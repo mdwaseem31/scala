@@ -1,0 +1,12 @@
+01. Parallel Collection is good when we have whole bunch of values and want to execute the same code on all of those different values.
+02. If we want to be able to execute very different pieces of code and have them happen at the same time, we have to use futures.
+03. Threads that futures use are never just sitting and waiting for stuff.
+04. Future is in package: scala.concurrent
+05. There is both a trait and a companion object for the future.
+06. The apply method of the companion object is an easy way to be able to create a future.
+07. We need to import below 2 packages:
+	scala.concurrent.Future
+	scala.concurrent.ExecutionContext.Implicits.global
+	
+Deadlock:
+The situation where one thread is churning away producing forever and another thread waiting for it to happen and this leads to a problem that we refer to as Deadlock.

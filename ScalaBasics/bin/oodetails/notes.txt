@@ -1,0 +1,7 @@
+01. When you create an object that has the same name as that of a class then it is called companion object.
+02. If every instance of the class doesn't need a copy of a code snippet then that code snippet can go inside of the companion object.
+03. Companion object can see private members of its class and vice versa.
+04. All variables in scala by default is public whereas in java, they are private.
+05. private will make variable private to the class.
+06. private[packageName] will make a variable private to a package (its value is visible to all classes within that package)
+07. private[this] will make this variable private not only to the current class but private to the current instance of the class.

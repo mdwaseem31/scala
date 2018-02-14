@@ -1,0 +1,46 @@
+Refer Player.scala -> The object that gets created in "object Player" is a companion object.
+Companion object in scala plays the role of a Static method in Java. But companion object have significantly more capability.
+Static methods in java are accessed by className.methodName
+Explanation of line: val player = Player(readLine(), "inn")
+	The way we are accessing companion object from MUDServer.scala is:
+	val player = Player(readLine(), "inn")
+	Above is same as below. This is because "object Player" had a function called "apply":
+	val player = Player.apply(readLine(), "inn")
+	Ex: List(1,2,3) is same as List.apply(1,2,3)
+		This is because List has a function called apply
+	So to conclude, if we have an apply function that returns a new object then we don't need to do below:
+	val player = new Player(readLine(), "inn")
+	
+The primary constructor of Player object is:
+	class Player(val name: String, private var mItems: List[Item], private var mCurrentRoom: String) extends Character {
+	}
+	
+	
+A trait is implemented in Character.scala. A trait is an equivalent of an Interface in java.
+There is a limitation in scala that you can only extend one class. But we can inherit from multiple traits just like we can inherit from multiple interfaces.
+A trait cannot take arguments.
+We can extend one class and also extend multiple traits.
+
+Below is a data member that I didn't value to. (which means it is abstract)
+def items: List[Item]
+In scala, we can override anything that we put inside of a trait or a class. So we can override values, methods, vars and type decorations
+
+Line: val rooms = (xml.XML.loadFile("map.xml") \ "room").map(n => {
+Here it creates a room by reading the xml file
+
+Line: val room = Room(n)
+It winds up doing a similar thing where it uses the apply method of the room companion object here.
+
+main method in MUDServer.scala keeps calling the player.process until user quits.
+
+Run the code:
+Enter your name
+south
+north
+get cup
+look
+inv
+south 
+drop cup
+cup
+inv

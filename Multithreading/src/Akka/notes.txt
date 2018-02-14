@@ -1,0 +1,2 @@
+01. Download akka library version 2.4.1 from https://akka.io/
+02. Create a new Scala App and add the akka jar to its build path.

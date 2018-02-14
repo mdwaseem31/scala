@@ -1,0 +1,202 @@
+Also refer Scala Tutorial by Mark Lewis - https://www.youtube.com/watch?v=85bHg5AipvU&list=PLLMXbkbDbVt8JLumqKj-3BlHmEXPIfR42
+
+Download basic language implementation from http://scala-lang.org/
+To get eclipse with scala, go to http://scala-ide.org/
+
+Create new scala project: InfiniteSkills
+Right click on project -> Scala -> Create Scala interpreter in InfiniteSkills -> This will open up scala terminal
+Right click on src -> New -> Scala Worksheet -> Name it firstWorksheet
+We can create .scala scripts from terminal and run it using command: scala test.scala
+
+All the letters in scala starts with upper case letter whereas in Java we have upper case for Objects and lower case for primitives.
+All the types are considered as object types in scala whereas in Java primitives like int, double, string,...
+In scala, every function should return something. A nothing is expressed as (). "()" is known as unit.
+In scala, if a function doesn't return anything then I don't have to specify "()". Ex: In java, we use array.length() but in scala, it is just array.length
+
+Variables:
+01. val and var both declares variables. Difference between them is that val creates non-changeable reference and var creates one that can change.
+02. val in scala = final in Java and var in scala = non final varibale in Java.
+03. Always prefer val. Only use var when its value really needs to be changed.
+04. Variable names must start with an "_" or letters followed by "_", letters or numbers
+05. I just cannot declare a variable. It has to be initialized at the time of declaration.
+06. Tuples are typically used when you want a simple grouping of information or when a function return multiple values. This is very painful in Java. 
+	Ex: val (c,d) = (3,'h')
+
+if Expressions:
+01. Every function must return something in scala unlike Java.
+02. If the control goes to else expression and if the else expression is missing then it returns ().
+03. String is of type Any and Int is of type AnyVal
+
+match Expressions:
+01. This is similar to switch statement in Java. match Expression is much more powerful. match do not have break statement.
+02. => is read as rocket.
+03. An _ is a wildcard in scala and is read as something or anything.
+04. _ is a pattern. Patterns can also be variable names. The variable i can bound to anything (either an int or string or tuple or ...). Example for an int and tuple is shown in the code.
+05. If we do not want b to create a new variable and instead use the actual variable b then make variable b as val and access its value as `b`
+
+Functions and Recursions:
+01. The types on arguments to functions and methods are required whereas at most of the places it is not required. But the type of return is optional and it is good practice to use.
+	def square(x:Double):Double = x*x
+02. When the function is not returning anything, we can skip return type and a = sign in its signature.
+
+Recursive: A function that calls itself.
+01. Recursive is similar to loop and is much simpler than loop.
+02. Return type is must.
+03. In scala, I can create nested functions, nested if,...unlike Java
+04. There is memory in the call stack that remembers where we are.
+05. In order to know whether a StackOverflow would occur for a function, use annotation @tailrec and import scala.annotation._
+06. In scala, import statements can be anywhere unlike Java where it has to be on the top
+
+Collections:
+01. Go to http://scala-lang.org/ -> API Docs -> Scala.collection package
+02. Refer the attached primary-scala-collection.png
+03. 2 types of collection: Scala collection immutable and Scala collection mutable
+04. A set doesn't allow duplicates whereas a Sequence does allow duplilcates.
+05. An IndexedSeq should allow you to a random location in the sequence efficiently whereas LinearSeq can take order in time to get to the nth element.
+06. Refer the attached immutable-scala-collection.png
+07. Always try to make things immutable in scala when you can. This is significantly large (See the picture) and is from scala.collection.immutable package
+08. Refer attached mutable-scala-collection.png
+
+Sequences: Array, List, Vector, Buffer, and Range. Refer worksheet6.sc
+01. Arrays and Lists can be indexed.
+02. Arrays are mutable (can change value) whereas Lists are immutable. Always prefer List over an Array.
+03. Lists are immutable singly linked list. Indexing into it is typically slow and you shouldn't do things that way.
+04. Since lists are singly linked, I can add things at the beginning of list. "::" is read as cons and it will prepend to the head of the list. This is fast. But appending to the end is a very slow operation.
+05. If I don't know how many elements are needed upfront then go with Lists. Arrays works best if I do know how many elements are needed upfront.
+
+fill and tabulate: Refer worksheet6.sc. Applies to both arrays and lists.
+01. It doesn't make sense to create a large array or list with 1000 0s or nulls.
+02. To create large arrays or lists in scala, the primary functions that we use are fill and tabulate.
+03. First argument to fill function is size (0 to size-1) and second one is the function.
+04. The reason why fill function in the code is returning 10 different values but not one same value 10 times is because the second argument to fill function is using a different symantic called passby name
+05. With fill function, elements don't know where they are occuring. This can be overcome using tabulate function.
+06. Sometimes we wanted to create an Array or a List so that every element that we create know something about where is in the array or list. For this we use, tabulate function.
+07. tabulate function takes 2 arguments as separate lists. First argument to tabulate function is number of elements and second argument is a function (we pass lambda expression here).
+
+Vector, Buffer and Range: Refer worksheet6.sc
+01. A vector is a indexable sequence that happens to be immutable. So in some way it is a combination of an array and a list (In list, you can't index quickly and in array, you can but the array is mutable and list is not).
+02. Two types of Buffer. An Array Buffer and a List Buffer. Array Buffer is quickly indexable and the List Buffer is not. It has the ability to grow unlike normal array and list.
+03. For using Buffer, we need to import the library: import collection.mutable
+04. ArrayBuffer is preferred over ListBuffer.
+
+Reading the API: There is no worksheet for this section.
+01. Visit API Docs on http://scala-lang.org/
+02. Search for "Array" and it pulls up all the classes which contains the term "Array".
+03. On LHS results, A bubble with "c" means class and a bubble with "o" means companion objject. A companion object contains all the static things that are there in Java.
+
+Higher-Order Methods and Lambda Expressions:
+01. Refer worksheet8.sc
+02. foreach is very much imperative construct. It doesn't give you back a value. But in the functional programming, we should get back value from a function.
+03. Two most imp functional high order methods are: Map and Filter
+04. A map takes a function that operates on a value and gives us back the result (a new collection). Its return type may not be same as the passing collection so it returns a new collection.
+
+map:
+01. Using Sets, you know whether something is there or not. 
+	Using Sequences, you have bunch of values and you keep track of them by index. 
+	A map gives you the ability to store and look things up by something other than an integer index. There are other advantages of map which includes memory utilization.
+02. The difference between collections and map is that they have parametric polymorphism but they are parametric on two different types.
+03. With map, a key is associated with the value. A key and value can be anything (int, char, string,..)
+04. A Map exists in mutable and immutable forms. By default, it is immutable.
+
+filter:
+01. A filter creates a new collection that only has elements that satisfies some predicate (a function that returns a boolean expression).
+
+flatMap:
+01. Difference between a Map and a flatMap is that the map is expecting to get results that are the type that goes in the collection and flatMap is expecting results that are themselves basically collections of the type and its going to put them all together.
+
+reduce and fold:
+01. These are also high order methods that we can call on our collections that basically run through and apply some operation to everything inside of the collection.
+02. In some ways they are very similar to the operate on list and operate on array.
+03. Different flavors: reduceLeft, reduceRight, foldLeft and foldRight
+04. reduceLeft takes a function with 2 arguments and it's going to call that function on the first argument and the second argument and then it's going to take the results of that and pass that into the function to also apply to the third and then pass that result and also apply to the fourth. Its accumulating a value as it goes through the collection.
+05. In reduce, both arguments has to be of the same type as the type of the collection on which it is operating. And the output has to be of the same type.
+06. So reduce doesn't give us much flexibility as far as the types go. We can get around that if we do a fold operation.
+07. fold is a curried method that takes two separate argument lists and the first one is the initial value for your accumulator. So if I am doing addition, my initial value is 0 and then it takes the function that we want to use.
+08. reduce, fold operations can do what loops, recursion can do.
+
+find and option:
+01. The Option Type is intended to represent something that may or may not have a value.
+02. The Option Type is used broadly so that the type system can help you find certain types of errors so that if something wasn't going to have a value. Instead of causing an error, that would help trigger your code.
+03. The method: "find" exists for both Arrays and Lists and it takes a predicate. It will find the 1st item that matches that predicate.
+04. The Option Type can either be "Some" with a value or "None". "None" will have 0 elements and "Some" will have 1 element in it.
+ 
+Collection Patterns and Case Classes:
+01. Tuples are not good in reading and are not expressive. The other way to group data is to use classes.
+02. case classes are decorative. 
+03. With case class, we create our own type. And all types in scala starts with upper case letter (String, Int,...)
+
+Iterators and scala.io Source:
+01. Refer scala.io.Source -> for handling files, InputStream, URL
+
+Sets and Maps:
+01. This is from the family of Collections.
+02. Till now we have focussed on Sequences. In Sets and Maps, most of the things are almost same.
+03. A Set by default is immutable.
+04. A Set contains unique values.
+
+General:
+01. cons can be used in below two ways
+	01a. For a List (lst) - 1::lst
+	01b. For a list (lst) - a ::= 1
+02. Two ways to create launching point of application:
+	03a. object Foo extends App {
+  		// your application starts here
+		}
+	03b. object Bar {
+  		def main(args: Array[String]) {
+    		// your application starts here
+		  }
+		}
+03. All variables in scala by default is public whereas in java, they are private.
+04. private will make variable private to the class.
+05. private[packageName] will make a variable private to a package (its value is visible to all classes within that package)
+06. private[this] will make this variable private not only to the current class but private to the current instance of the class.
+
+Singleton and Companion object:
+01. Singleton = single instance of a class
+02. When you create an object that has the same name as that of a class then it is called companion object. Companion object in scala plays the role of a Static method in Java. But companion object have significantly more capability.
+03. If every instance of the class doesn't need a copy of a code snippet then that code snippet can go inside of the companion object.
+04. Companion object can see private members of its class and vice versa.
+
+Scala Naming/Symbolic Names:
+01. We can create a variable or a function name using any combination of operators: + - * / % | & ^ ! < > = ? $ \ : ~
+	Ex: def +*/\ = 6
+		def abc_+*/\ = 42
+		
+implicit:
+01. To convert a variable's type from one to another, use implicit keyword.
+02. It takes a single argument, the type you want to convert from and it returns the type you want to convert to.
+
+When to use Inheritance:
+01. If you can say: type B is A of type A. Ex: A mammal is an animal or a primate is a mammal.
+02. If it is not a subtype then defenitely you should NOT use inheritance.
+
+protected visibility:
+01. protected members can be accessed by the class and sub-classes.
+02. This is not a preferred keyword to use.
+
+Arguments to the Supertype:
+01. when we are passing arguments from subtype to supertype, we should declare those variables as val or var (because they must have already been defined as a val or a var in the supertype).
+
+Calling methods on the Supertype:
+01. Sometimes we would want to call methods on the Supertype even though we have overriden in the Subtype. 
+
+Astract:
+01. Abstract classes cannot be instantiated and they contain unimplemented methods.
+02. The class extending an abstract class must implement all its methods and variables.
+
+Traits:
+01. A trait is an equivalent of an Interface in java.
+02. There is a limitation in scala that you can only extend one class. But we can inherit from multiple traits just like we can inherit from multiple interfaces.
+03. A trait cannot take arguments.
+04. We can extend multiple traits (OR) extend one class along with multiple traits.
+05. Ex: An example where we can inherit from multiple classes: class Mother can inherit from class: Person and can also extend traits: Parent and Female because a Mother is a Female, Parent and also a Person.
+	syntax: class Mother extends Person with Parent with Female {}
+
+final keyword:
+01. final classes cannot be overriden (applies to immutable classes)
+02. final variables cannot be changed.
+
+Enumerations:
+01. val a = 10. This value can later be changed to a string. To prevent this from happening we use Enumerations.
+02. class should extend Enumeration

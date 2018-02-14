@@ -1,0 +1,3 @@
+01. In this tutorial, we'll learn about Public Accessors and Validity Checks.
+02. We'll modify Student.scala file to see how we can modify var variables
+03. We'll also see how same changes can be done in ImmutableStudent.scala

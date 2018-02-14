@@ -1,0 +1,7 @@
+01. In this tutorial, we'll learn about Mutability and Private Members. 
+02. Since scala prefers variables and classes to be immutable, we'll make Student class Immutable here.
+03. If a variable in a class is declared as var then its object can change its value from anywhere which is bad.
+04. But if we still want to modify that value within the class and prevent its value getting changed from other class then use "private var"
+05. a += 1
+	b -= 1
+	Similarly, quizzes ::= grade

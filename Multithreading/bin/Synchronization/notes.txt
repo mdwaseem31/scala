@@ -1,0 +1,6 @@
+01. Synchronization is for fixing the race condition problem demonstrated while learning Parallel Collections (in ParllelCollect.scala)
+02. All objects has a method in them called synchronized. When I used synchronized method, code returned 1000000 (fix to race condition problem)
+03. With synchronization, the code run a lot slower and it would be even slower if it is used without par.
+
+01. Apart from slow speed, over synchronization can also lead to deadlock.
+02. The situation where one thread is churning away producing forever and another thread waiting for it to happen and this leads to a problem that we refer to as Deadlock.

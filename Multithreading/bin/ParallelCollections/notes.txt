@@ -1,0 +1,9 @@
+Parallel Collections:
+01. The simplest way to get multithreading is using the Parallel Collections.
+02. These collections are much like the ones that we are used to like array,lists,.. except that these happen to process the contents in parallel in the various functions that they have. So they have the same types of methods that we're used to from array and list.
+03. These are present in Scala Collection parallel package.
+04. There are 2 subtypes to this: 1) scala.collection.parallel.immutable 2) scala.collection.parallel.immutable
+05. These have shorter lists of contents though.
+06. What has caused race condition problem in the code: It is possible that one thread loads the value of i and before that thread gets to the store(3rd step above), another thread loads the same value of i. So multiple threads can get the same value of i, they all add 1 so for example, four thread might have loaded same value of i (10) then I have 4 threads that incremented its value to 11. Those 4 threads should have round up i value to 14 so they are competing with each other. This is called as race condition.
+07. As a general rule, if you have mutable memory (Ex: var or Array or Buffer) and you have two threads that are accessing it atleast of them is writing, you have the potential for a race condition.
+08. Parallel Collections are not very flexible. It works great only for data parallelism.
